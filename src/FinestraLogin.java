@@ -2,6 +2,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import javax.swing.border.EmptyBorder;
 
 public class FinestraLogin extends JFrame {
     private JTextField usernameField;
@@ -13,23 +14,15 @@ public class FinestraLogin extends JFrame {
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         setLayout(new BorderLayout());
 
-        JPanel panel = new JPanel(new GridLayout(3, 1));
+        // Creazione della barra degli strumenti
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false); // Impedisce il trascinamento della barra degli strumenti
+        add(toolBar, BorderLayout.NORTH);
 
-        JLabel usernameLabel = new JLabel("Username:");
-        usernameField = new JTextField();
-        panel.add(usernameLabel);
-        panel.add(usernameField);
-
-        JLabel passwordLabel = new JLabel("Password:");
-        passwordField = new JPasswordField();
-        panel.add(passwordLabel);
-        panel.add(passwordField);
-
-        JButton loginButton = new JButton("LOGIN");
-        panel.add(loginButton);
-
-        add(panel, BorderLayout.CENTER);
-
+        // Creazione dei bottoni e aggiunta alla barra degli strumenti
+        ImageIcon loginIcon = new ImageIcon("login.png"); // Immagine per il pulsante LOGIN
+        JButton loginButton = new JButton("LOGIN", loginIcon);
+        loginButton.setPreferredSize(new Dimension(100, 30)); // Imposta la dimensione preferita del pulsante
         loginButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 String username = usernameField.getText();
@@ -42,12 +35,28 @@ public class FinestraLogin extends JFrame {
                 }
             }
         });
+        toolBar.add(loginButton);
+
+        // Aggiunta spazio vuoto per allineare i bottoni a destra della barra degli strumenti
+        toolBar.add(Box.createHorizontalGlue());
+
+        // Creazione dei campi di testo per username e password
+        JPanel panel = new JPanel(new GridLayout(2, 2));
+        panel.setBorder(new EmptyBorder(10, 10, 10, 10));
+        JLabel usernameLabel = new JLabel("Username:");
+        usernameField = new JTextField();
+        panel.add(usernameLabel);
+        panel.add(usernameField);
+        JLabel passwordLabel = new JLabel("Password:");
+        passwordField = new JPasswordField();
+        panel.add(passwordLabel);
+        panel.add(passwordField);
+        add(panel, BorderLayout.CENTER);
     }
 
     private boolean verificaCredenziali(String username, String password) {
         // Implementazione della verifica delle credenziali
-        // In questo esempio, verifichiamo solo se username e password sono entrambi
-        // "admin"
+        // In questo esempio, verifichiamo solo se username e password sono entrambi "admin"
         return username.equals("admin") && password.equals("admin");
     }
 

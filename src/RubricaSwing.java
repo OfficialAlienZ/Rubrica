@@ -15,32 +15,26 @@ public class RubricaSwing extends JFrame {
         setSize(600, 400);
         setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        JPanel panel = new JPanel(new BorderLayout());
-        getContentPane().add(panel);
+        // Creazione della barra degli strumenti
+        // Creazione della barra degli strumenti
+        JToolBar toolBar = new JToolBar();
+        toolBar.setFloatable(false); // Impedisce il trascinamento della barra degli strumenti
+        add(toolBar, BorderLayout.NORTH);
 
-        // Creazione della tabella
-        tableModel = new DefaultTableModel();
-        tableModel.addColumn("Nome");
-        tableModel.addColumn("Cognome");
-        tableModel.addColumn("Telefono");
-        table = new JTable(tableModel);
-        panel.add(new JScrollPane(table), BorderLayout.CENTER);
-
-        // Pannello dei bottoni
-        JPanel buttonPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-        JButton nuovoButton = new JButton("Nuovo");
-        JButton modificaButton = new JButton("Modifica");
-        JButton eliminaButton = new JButton("Elimina");
-        buttonPanel.add(nuovoButton);
-        buttonPanel.add(modificaButton);
-        buttonPanel.add(eliminaButton);
-        panel.add(buttonPanel, BorderLayout.SOUTH);
-
+        // Creazione dei bottoni e aggiunta alla barra degli strumenti
+        ImageIcon nuovoIcon = new ImageIcon("nuovo.png"); // Immagine per il pulsante Nuovo
+        JButton nuovoButton = new JButton("Nuovo", nuovoIcon);
+        nuovoButton.setPreferredSize(new Dimension(100, 30)); // Imposta la dimensione preferita del pulsante
         nuovoButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 apriFinestraEditorPersona(null);
             }
         });
+        toolBar.add(nuovoButton);
+
+        ImageIcon modificaIcon = new ImageIcon("modifica.png"); // Immagine per il pulsante Modifica
+        JButton modificaButton = new JButton("Modifica", modificaIcon);
+        modificaButton.setPreferredSize(new Dimension(100, 30)); // Imposta la dimensione preferita del pulsante
 
         modificaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -52,6 +46,11 @@ public class RubricaSwing extends JFrame {
                 }
             }
         });
+        toolBar.add(modificaButton);
+
+        ImageIcon eliminaIcon = new ImageIcon("elimina.png"); // Immagine per il pulsante Elimina
+        JButton eliminaButton = new JButton("Elimina", eliminaIcon);
+        eliminaButton.setPreferredSize(new Dimension(100, 30)); // Imposta la dimensione preferita del pulsante
 
         eliminaButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
@@ -64,6 +63,18 @@ public class RubricaSwing extends JFrame {
                 }
             }
         });
+        // Aggiunta spazio vuoto per allineare i bottoni a destra della barra degli
+        // strumenti
+        toolBar.add(Box.createHorizontalGlue());
+        toolBar.add(eliminaButton);
+
+        // Creazione della tabella
+        tableModel = new DefaultTableModel();
+        tableModel.addColumn("Nome");
+        tableModel.addColumn("Cognome");
+        tableModel.addColumn("Telefono");
+        table = new JTable(tableModel);
+        add(new JScrollPane(table), BorderLayout.CENTER);
     }
 
     private void apriFinestraEditorPersona(Persona persona) {
@@ -73,7 +84,7 @@ public class RubricaSwing extends JFrame {
 
     public void aggiungiPersona(Persona persona) {
         rubrica.add(persona);
-        Object[] rowData = {persona.getNome(), persona.getCognome(), persona.getTelefono()};
+        Object[] rowData = { persona.getNome(), persona.getCognome(), persona.getTelefono() };
         tableModel.addRow(rowData);
     }
 
