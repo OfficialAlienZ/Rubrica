@@ -95,12 +95,12 @@ public class RubricaSwing extends JFrame {
         tableModel.setValueAt(persona.getTelefono(), rowIndex, 2);
     }
 
-    public static void main(String[] args) {
-        SwingUtilities.invokeLater(new Runnable() {
-            public void run() {
-                RubricaSwing rubricaSwing = new RubricaSwing();
-                rubricaSwing.setVisible(true);
-            }
-        });
-    }
+    // public static void main(String[] args) {
+    //     SwingUtilities.invokeLater(new Runnable() {
+    //         public void run() {
+    //             RubricaSwing rubricaSwing = new RubricaSwing();
+    //             rubricaSwing.setVisible(true);
+    //         }
+    //     });
+    // }
 }
