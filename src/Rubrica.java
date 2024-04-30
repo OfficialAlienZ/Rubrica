@@ -6,12 +6,46 @@ import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.Vector;
 
+import javax.swing.JOptionPane;
+
 public class Rubrica {
     private Vector<Persona> rubrica = new Vector<>();
     private static final String DIRECTORY_PATH = "informazioni";
 
     public Rubrica() {
-        caricaDaFile();
+        testCaricaFileTesto();
+    }
+
+    public static void testCaricaFileTesto() {
+        StringBuilder contentBuilder = new StringBuilder();
+        contentBuilder.append("Caricamento dei file di testo dalla cartella informazioni:\n\n");
+
+        File directory = new File("informazioni");
+        if (directory.exists() && directory.isDirectory()) {
+            File[] files = directory.listFiles();
+            if (files != null) {
+                for (File file : files) {
+                    if (file.isFile() && file.getName().endsWith(".txt")) {
+                        contentBuilder.append("Contenuto di ").append(file.getName()).append(":\n");
+                        try (BufferedReader reader = new BufferedReader(new FileReader(file))) {
+                            String line;
+                            while ((line = reader.readLine()) != null) {
+                                contentBuilder.append(line).append("\n");
+                            }
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                        contentBuilder.append("\n\n");
+                    }
+                }
+            }
+        } else {
+            contentBuilder.append("La cartella informazioni non esiste o non è una directory.");
+        }
+
+        // Mostra il contenuto nella finestra di dialogo
+        JOptionPane.showMessageDialog(null, contentBuilder.toString(), "Contenuto dei file di testo",
+                JOptionPane.PLAIN_MESSAGE);
     }
 
     private void caricaDaFile() {
@@ -47,6 +81,7 @@ public class Rubrica {
 
     public void aggiungiPersona(Persona persona) {
         rubrica.add(persona);
+        System.out.println("salvataggio persona su file");
         salvaPersonaSuFile(persona);
     }
 
@@ -77,6 +112,7 @@ public class Rubrica {
     public void modificaPersona(int indice, Persona persona) {
         if (indice >= 0 && indice < rubrica.size()) {
             rubrica.set(indice, persona);
+            System.out.println("salvataggio persona su file");
             salvaPersonaSuFile(persona);
         } else {
             throw new IllegalArgumentException("Indice non valido");

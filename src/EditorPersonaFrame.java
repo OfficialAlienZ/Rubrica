@@ -64,9 +64,9 @@ public class EditorPersonaFrame extends JFrame {
         if (persona != null) {
             nomeField.setText(persona.getNome());
             cognomeField.setText(persona.getCognome());
-            // Indirizzo non viene utilizzato nell'esempio
+            indirizzoField.setText(persona.getIndirizzo());
             telefonoField.setText(persona.getTelefono());
-            // Età non viene utilizzata nell'esempio
+            etaField.setText(String.valueOf(persona.getEta()));
         }
     }
 }
