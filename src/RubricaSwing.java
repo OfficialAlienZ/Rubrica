@@ -36,7 +36,7 @@ public class RubricaSwing extends JFrame {
         add(toolBar, BorderLayout.NORTH);
 
         // Creazione dei bottoni e aggiunta alla barra degli strumenti
-        ImageIcon nuovoIcon = new ImageIcon("nuovo.png"); // Immagine per il pulsante Nuovo
+        ImageIcon nuovoIcon = new ImageIcon("src/nuovo.png"); // Immagine per il pulsante Nuovo
         Image scaledNuovoImage = nuovoIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ridimensiona
                                                                                                      // l'immagine
         nuovoIcon.setImage(scaledNuovoImage); // Imposta l'immagine ridimensionata nel pulsante
@@ -50,7 +50,7 @@ public class RubricaSwing extends JFrame {
         });
         toolBar.add(nuovoButton);
 
-        ImageIcon modificaIcon = new ImageIcon("modifica.png"); // Immagine per il pulsante Modifica
+        ImageIcon modificaIcon = new ImageIcon("src/modifica.png"); // Immagine per il pulsante Modifica
         Image scaledModificaImage = modificaIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ridimensiona
                                                                                                            // l'immagine
         modificaIcon.setImage(scaledModificaImage); // Imposta l'immagine ridimensionata nel pulsante
@@ -68,7 +68,7 @@ public class RubricaSwing extends JFrame {
             }
         });
         toolBar.add(modificaButton);
-        ImageIcon eliminaIcon = new ImageIcon("elimina.png"); // Immagine per il pulsante Elimina
+        ImageIcon eliminaIcon = new ImageIcon("src/elimina.png"); // Immagine per il pulsante Elimina
         Image scaledEliminaImage = eliminaIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ridimensiona
                                                                                                          // l'immagine
         eliminaIcon.setImage(scaledEliminaImage); // Imposta l'immagine ridimensionata nel pulsante
