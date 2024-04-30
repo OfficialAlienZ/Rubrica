@@ -21,7 +21,7 @@ public class FinestraLogin extends JFrame {
         add(toolBar, BorderLayout.NORTH);
 
         // Creazione dei bottoni e aggiunta alla barra degli strumenti
-        ImageIcon loginIcon = new ImageIcon("src/login.png"); // Immagine per il pulsante LOGIN
+        ImageIcon loginIcon = new ImageIcon(getClass().getResource("login.png")); // Immagine per il pulsante LOGIN
         Image scaledImage = loginIcon.getImage().getScaledInstance(20, 20, Image.SCALE_SMOOTH); // Ridimensiona l'immagine
         loginIcon.setImage(scaledImage); // Imposta l'immagine ridimensionata nel pulsante
         JButton loginButton = new JButton("LOGIN", loginIcon);
